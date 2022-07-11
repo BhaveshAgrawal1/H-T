@@ -32,12 +32,13 @@ public class BookService {
 			return null; // throw ex
 		}
 	}
-	public void deleteBookById(int id) {
+	public String deleteBookById(int id) {
 		Optional<Book> optional = repo.findById(id);
 		if(optional.isPresent()) {
 			 repo.deleteById(id);
+			 return "book with id "+ id +" is deleted";
 		} else {		
-			System.out.println("Could not find book with id "+id);
+			return "Could not find book with id "+id;
 			 // throw ex
 		}
 	}
@@ -46,13 +47,14 @@ public class BookService {
 		
 	}
 	
-	public Book updateExistingBook(Book b) {
+	public String updateExistingBook(Book b) {
 		Optional<Book> optional = repo.findById(b.getId());
 		if(optional.isPresent()) {
-			return repo.save(b);
+			Book book = repo.save(b);
+			return "book with id "+b.getId()+" is updated";
 		} else {		
-			System.out.println("Could not find book with id "+b.getId());
-			return b;
+			return"Could not find book with id "+b.getId();
+			
 		}
 		
 		

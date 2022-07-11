@@ -29,8 +29,8 @@ public class BookController {
 	}
 	
 	@DeleteMapping("/books/{id}")
-	public void deleteBook(@PathVariable int id) {
-		service.deleteBookById(id);
+	public String deleteBook(@PathVariable int id) {
+		return service.deleteBookById(id);
 	}
 	
 	@GetMapping("/books/{id}")
@@ -43,7 +43,7 @@ public class BookController {
 		return service.createBook(book);
 	}
 	@PutMapping("/books")
-	public Book UpdateBook(@RequestBody Book book) {
+	public String UpdateBook(@RequestBody Book book) {
 		return service.updateExistingBook(book);
 	}
 }
